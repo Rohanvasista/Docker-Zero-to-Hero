@@ -1,5 +1,5 @@
 ###########################################
-# BASE IMAGE
+# BASE IMAGE -- only dedicated to build steps
 ###########################################
 
 FROM ubuntu AS build
@@ -8,8 +8,10 @@ RUN apt-get update && apt-get install -y golang-go
 
 ENV GO111MODULE=off
 
+#copied source code
 COPY . .
 
+#created binary
 RUN CGO_ENABLED=0 go build -o /app .
 
 ############################################
